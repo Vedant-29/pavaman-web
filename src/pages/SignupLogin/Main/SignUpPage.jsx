@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { supabase } from "../config/supabase-client";
-import logo from "../assets/unifest-light.png";
-import EmailVerifyPage from "./EmailVerifyPage";
+import logo from "../../../assets/kapil-logo.png";
+import { supabase } from "../../../config/supabase-client";
 
 function SignUpPage() {
   const [email, setEmail] = useState("");
@@ -40,7 +39,8 @@ function SignUpPage() {
       if (insertError) {
         setRMsg(insertError.message);
       } else {
-        navigate("/email-verify", { state: { userEmail: emailId } });
+        // navigate("/email-verify", { state: { userEmail: emailId } });
+        navigate("/employee-list", { state: { userEmail: emailId } });
         setEmail("");
         setPassword("");
       }
@@ -88,8 +88,8 @@ function SignUpPage() {
               disabled={isSubmitting}
               className={`font-medium w-full py-3.5 px-3.5 rounded focus:outline-none focus:shadow-outline ${
                 isSubmitting
-                  ? "bg-red-300 text-white"
-                  : "bg-[#E75A5A] text-white"
+                  ? "bg-blue-300 text-white"
+                  : "bg-[#4880FF] text-white"
               }`}
             >
               {isSubmitting ? "Loading..." : "Sign up"}
