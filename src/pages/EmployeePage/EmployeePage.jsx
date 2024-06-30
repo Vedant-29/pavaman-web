@@ -1,12 +1,123 @@
-import React from 'react'
-import DefaultSidebar from '../../components/DefaultSidebar'
+import React, { useEffect, useState } from "react";
+import DefaultSidebar from "../../components/DefaultSidebar";
+import { supabase } from "../../config/supabase-client";
+
+const StatsCard = ({ title, value, color }) => {
+  return (
+    <div
+      className={`mt-0 sm:mt-0 p-3 flex items-center bg-[${color}] rounded-md`}
+    >
+      <div>
+        <h3 className="text-gray-500 text-sm">{title}</h3>
+        <p className="text-xl font-semibold">{value}</p>
+      </div>
+    </div>
+  );
+};
 
 function EmployeePage() {
+  const [employeeList, setemployeeList] = useState([]);
+  useEffect(() => {
+    fetchEmployeeList();
+  });
+
+  const fetchEmployeeList = async () => {
+    const { data, error } = await supabase.from("employee_list").select("*");
+
+    if (error) {
+      console.log(error.message);
+    } else {
+      setemployeeList(data);
+    }
+  };
+
   return (
-    <div>
+    <div className="flex flex-row">
       <DefaultSidebar />
+      <div
+        className="flex-1 p-6"
+        style={{ maxHeight: "calc(100vh - 56px)", overflowY: "auto" }}
+      >
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <StatsCard
+            title="Total Salesman"
+            value="$76,96,432"
+            color="#FADEDE"
+          />
+          <StatsCard title="Targets Completed" value="1645" color="#EBE8FD" />
+          <StatsCard title="Targets Pending" value="14,634" color="#FADEDE" />
+          {/* <StatsCard
+            title="Total Products"
+            value="254"
+            color="#EBE8FD"
+          /> */}
+        </div>
+
+        <div className="flex justify-between items-center mb-4">
+          <div className="flex flex-row w-full space-x-2">
+            <input
+              type="text"
+              className="flex-grow py-1 px-4 rounded-md border border-[#E6E6E6] outline-none focus:bg-[#F3F3F3]"
+              placeholder="Search..."
+              style={{ caretColor: "#C5C5C5" }}
+            />
+            <div>
+              <button className="py-1 px-3 bg-blue-500 text-white rounded-md flex-shrink-0">
+                Filter
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white mb-8 p-4 mt-0 sm:mt-0 shadow-custom-light transition-shadow duration-300 rounded-lg">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead>
+              <tr className="bg-[#F4F4F4]">
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  ID
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Employee Name
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Mobile No.
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Email
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  View Details
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {employeeList.map((employee) => (
+                <tr key={employee.id}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    {employee.id}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {employee.name}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {employee.mobileno}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {employee.email}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                    <button className="py-1 px-4 bg-[#D7FFDE] text-[#00B69B] font-medium rounded-md flex-shrink-0">
+                      View details
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default EmployeePage
+export default EmployeePage;

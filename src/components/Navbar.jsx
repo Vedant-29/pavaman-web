@@ -18,12 +18,6 @@ function Navbar({isFixed}) {
         <div className="flex flex-row">
           {user ? (
             <>
-              <Link
-                to="/profile"
-                className="inline-block text-sm sm:text-md px-2 sm:px-4 py-2 sm:py-3 leading-none rounded text-[#0BBD52] font-bold bg-[#E2F9E3] sm:mt-0"
-              >
-                Profile
-              </Link>
             </>
           ) : (
             <>

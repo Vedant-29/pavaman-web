@@ -1,79 +1,53 @@
+import React, { useState } from 'react';
 import {
-    Card,
-    Typography,
-    List,
-    ListItem,
-    ListItemPrefix,
-    ListItemSuffix,
-    Chip,
-  } from "@material-tailwind/react";
-  import {
-    PresentationChartBarIcon,
-    ShoppingBagIcon,
-    UserCircleIcon,
-    Cog6ToothIcon,
-    InboxIcon,
-    PowerIcon,
-  } from "@heroicons/react/24/solid";
-  
-  function DefaultSidebar() {
-    return (
-      <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
-        <div className="mb-2 p-4">
-          <Typography variant="h5" color="blue-gray">
-            Sidebar
-          </Typography>
-        </div>
-        <List className="space-y-2">
-          <ListItem className="p-4">
+  Card,
+  Typography,
+  List,
+  ListItem,
+  ListItemPrefix,
+} from "@material-tailwind/react";
+import {
+  PresentationChartBarIcon,
+  ShoppingBagIcon,
+  UserCircleIcon,
+  Cog6ToothIcon,
+  InboxIcon,
+  PowerIcon,
+} from "@heroicons/react/24/solid";
+
+function DefaultSidebar() {
+  const [activeItem, setActiveItem] = useState('Employee list');
+
+  const menuItems = [
+    { name: 'Employee list', icon: PresentationChartBarIcon },
+    { name: 'Inbox', icon: ShoppingBagIcon },
+    { name: 'Profile', icon: UserCircleIcon },
+    { name: 'Settings', icon: Cog6ToothIcon },
+    { name: 'Log Out', icon: PowerIcon },
+  ];
+
+  return (
+    <Card className="h-[calc(100vh-56px)] w-full max-w-[15rem] p-4 shadow-xl shadow-blue-gray-900/5">
+      <List className="space-y-2">
+        {menuItems.map((item) => (
+          <ListItem
+            key={item.name}
+            className={`p-2 cursor-pointer ${
+              activeItem === item.name
+                ? 'bg-blue-500 text-white'
+                : 'hover:bg-blue-100'
+            }`}
+            onClick={() => setActiveItem(item.name)}
+          >
             <ListItemPrefix>
-              <PresentationChartBarIcon className="h-5 w-5" />
+              <item.icon className="h-5 w-5 mr-2" />
             </ListItemPrefix>
-            Dashboard
+            {item.name}
           </ListItem>
-          <ListItem className="p-4">
-            <ListItemPrefix>
-              <ShoppingBagIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            E-Commerce
-          </ListItem>
-          <ListItem className="p-4">
-            <ListItemPrefix>
-              <InboxIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            Inbox
-            <ListItemSuffix>
-              <Chip
-                value="14"
-                size="sm"
-                variant="ghost"
-                color="blue-gray"
-                className="rounded-full"
-              />
-            </ListItemSuffix>
-          </ListItem>
-          <ListItem className="p-4">
-            <ListItemPrefix>
-              <UserCircleIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            Profile
-          </ListItem>
-          <ListItem className="p-4">
-            <ListItemPrefix>
-              <Cog6ToothIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            Settings
-          </ListItem>
-          <ListItem className="p-4">
-            <ListItemPrefix>
-              <PowerIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            Log Out
-          </ListItem>
-        </List>
-      </Card>
-    );
-  }
-  
-  export default DefaultSidebar;
-  
+        ))}
+      </List>
+    </Card>
+  );
+}
+
+export default DefaultSidebar;
