@@ -15,7 +15,7 @@ import {
     InboxIcon,
     PowerIcon,
   } from "@heroicons/react/24/solid";
-   
+  
   function DefaultSidebar() {
     return (
       <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
@@ -24,41 +24,47 @@ import {
             Sidebar
           </Typography>
         </div>
-        <List>
-          <ListItem>
+        <List className="space-y-2">
+          <ListItem className="p-4">
             <ListItemPrefix>
               <PresentationChartBarIcon className="h-5 w-5" />
             </ListItemPrefix>
             Dashboard
           </ListItem>
-          <ListItem>
+          <ListItem className="p-4">
             <ListItemPrefix>
               <ShoppingBagIcon className="h-5 w-5" />
             </ListItemPrefix>
             E-Commerce
           </ListItem>
-          <ListItem>
+          <ListItem className="p-4">
             <ListItemPrefix>
               <InboxIcon className="h-5 w-5" />
             </ListItemPrefix>
             Inbox
             <ListItemSuffix>
-              <Chip value="14" size="sm" variant="ghost" color="blue-gray" className="rounded-full" />
+              <Chip
+                value="14"
+                size="sm"
+                variant="ghost"
+                color="blue-gray"
+                className="rounded-full"
+              />
             </ListItemSuffix>
           </ListItem>
-          <ListItem>
+          <ListItem className="p-4">
             <ListItemPrefix>
               <UserCircleIcon className="h-5 w-5" />
             </ListItemPrefix>
             Profile
           </ListItem>
-          <ListItem>
+          <ListItem className="p-4">
             <ListItemPrefix>
               <Cog6ToothIcon className="h-5 w-5" />
             </ListItemPrefix>
             Settings
           </ListItem>
-          <ListItem>
+          <ListItem className="p-4">
             <ListItemPrefix>
               <PowerIcon className="h-5 w-5" />
             </ListItemPrefix>
@@ -68,5 +74,6 @@ import {
       </Card>
     );
   }
-
+  
   export default DefaultSidebar;
+  
