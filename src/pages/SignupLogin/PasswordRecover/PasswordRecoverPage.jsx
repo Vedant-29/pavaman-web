@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { supabase } from "../config/supabase-client"; // Make sure you have supabase client setup in this file
-import logo from "../assets/unifest-light.png";
+import logo from "../../../assets/kapil-logo.png";
+import { supabase } from "../../../config/supabase-client";
 
 function PasswordRecoverPage() {
   const [email, setEmail] = useState("");

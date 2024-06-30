@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../assets/unifest-light.png";
+import logo from "../../../assets/kapil-logo.png";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function EmailVerifyPage() {
