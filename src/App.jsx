@@ -11,6 +11,8 @@ import PasswordResetPage from './pages/SignupLogin/PasswordRecover/PasswordReset
 import PasswordRecoverPage from './pages/SignupLogin/PasswordRecover/PasswordRecoverPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 import EmployeePage from './pages/EmployeePage/EmployeePage'
+import EmployeeProfile from './pages/EmployeePage/EmployeeProfile'
+import Test from './pages/EmployeePage/Test'
 
 function App() {
   return (
@@ -25,6 +27,16 @@ function App() {
           <Route exact path="/employee-list" element={
             <RootLayout isNavbarFixed={false}>
               <EmployeePage />
+            </RootLayout>
+          } />
+          <Route exact path="/employee-profile" element={
+            <RootLayout isNavbarFixed={false}>
+              <EmployeeProfile />
+            </RootLayout>
+          } />
+          <Route exact path="/test" element={
+            <RootLayout isNavbarFixed={false}>
+              <Test />
             </RootLayout>
           } />
           <Route
