@@ -13,6 +13,7 @@ import ProfilePage from './pages/ProfilePage/ProfilePage'
 import EmployeePage from './pages/EmployeePage/EmployeePage'
 import EmployeeProfile from './pages/EmployeePage/EmployeeProfile'
 import Test from './pages/EmployeePage/Test'
+import "./App.css"
 
 function App() {
   return (

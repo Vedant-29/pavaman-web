@@ -1,204 +1,141 @@
 import React from 'react';
-import {
-  MDBCol,
-  MDBContainer,
-  MDBRow,
-  MDBCard,
-  MDBCardText,
-  MDBCardBody,
-  MDBCardImage,
-  MDBBtn,
-  MDBBreadcrumb,
-  MDBBreadcrumbItem,
-  MDBProgress,
-  MDBProgressBar,
-  MDBIcon,
-  MDBListGroup,
-  MDBListGroupItem
-} from 'mdb-react-ui-kit';
 
 export default function Test() {
   return (
-    <section style={{ backgroundColor: '#eee' }}>
-      <MDBContainer className="py-5">
-        <MDBRow>
-          <MDBCol>
-            <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
-              <MDBBreadcrumbItem>
-                <a href='#'>Home</a>
-              </MDBBreadcrumbItem>
-              <MDBBreadcrumbItem>
-                <a href="#">User</a>
-              </MDBBreadcrumbItem>
-              <MDBBreadcrumbItem active>User Profile</MDBBreadcrumbItem>
-            </MDBBreadcrumb>
-          </MDBCol>
-        </MDBRow>
+    <section className="bg-gray-100 py-5">
+      <div className="container mx-auto py-5">
+        <div className="mb-4">
+          <nav className="bg-white rounded-3 p-3 shadow">
+            <ol className="list-reset flex">
+              <li><a href="#" className="text-blue-600 hover:text-blue-700">Home</a></li>
+              <li><span className="mx-2 text-gray-500">/</span></li>
+              <li><a href="#" className="text-blue-600 hover:text-blue-700">User</a></li>
+              <li><span className="mx-2 text-gray-500">/</span></li>
+              <li className="text-gray-500">User Profile</li>
+            </ol>
+          </nav>
+        </div>
 
-        <MDBRow>
-          <MDBCol lg="4">
-            <MDBCard className="mb-4">
-              <MDBCardBody className="text-center">
-                <MDBCardImage
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                  alt="avatar"
-                  className="rounded-circle"
-                  style={{ width: '150px' }}
-                  fluid />
-                <p className="text-muted mb-1">Full Stack Developer</p>
-                <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
-                <div className="d-flex justify-content-center mb-2">
-                  <MDBBtn>Follow</MDBBtn>
-                  <MDBBtn outline className="ms-1">Message</MDBBtn>
+        <div className="flex flex-wrap mx-4">
+          <div className="w-full lg:w-1/3 px-4 mb-4 lg:mb-0">
+            <div className="bg-white rounded shadow p-6 text-center">
+              <img
+                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                alt="avatar"
+                className="rounded-full mx-auto mb-4"
+                style={{ width: '150px' }}
+              />
+              <h5 className="text-xl font-semibold mb-1">John Smith</h5>
+              <p className="text-gray-600 mb-2">Full Stack Developer</p>
+              <p className="text-gray-600 mb-4">Bay Area, San Francisco, CA</p>
+              <div className="flex justify-center mb-2">
+                <button className="bg-blue-500 text-white py-2 px-4 rounded">Follow</button>
+                <button className="bg-transparent border border-blue-500 text-blue-500 py-2 px-4 rounded ml-2">Message</button>
+              </div>
+            </div>
+
+            <div className="bg-white rounded shadow p-6 mt-4">
+              <ul className="divide-y divide-gray-200">
+                <li className="flex justify-between items-center py-3">
+                  <span className="text-yellow-500"><i className="fas fa-globe fa-lg"></i></span>
+                  <span className="text-gray-600">https://mdbootstrap.com</span>
+                </li>
+                <li className="flex justify-between items-center py-3">
+                  <span className="text-gray-800"><i className="fab fa-github fa-lg"></i></span>
+                  <span className="text-gray-600">mdbootstrap</span>
+                </li>
+                <li className="flex justify-between items-center py-3">
+                  <span className="text-blue-400"><i className="fab fa-twitter fa-lg"></i></span>
+                  <span className="text-gray-600">@mdbootstrap</span>
+                </li>
+                <li className="flex justify-between items-center py-3">
+                  <span className="text-pink-600"><i className="fab fa-instagram fa-lg"></i></span>
+                  <span className="text-gray-600">mdbootstrap</span>
+                </li>
+                <li className="flex justify-between items-center py-3">
+                  <span className="text-blue-700"><i className="fab fa-facebook fa-lg"></i></span>
+                  <span className="text-gray-600">mdbootstrap</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="w-full lg:w-2/3 px-4">
+            <div className="bg-white rounded shadow p-6 mb-4">
+              <div className="grid grid-cols-3 gap-4">
+                <div className="col-span-1 font-semibold">Full Name</div>
+                <div className="col-span-2 text-gray-600">Johnatan Smith</div>
+                <hr className="col-span-3 my-2" />
+                <div className="col-span-1 font-semibold">Email</div>
+                <div className="col-span-2 text-gray-600">example@example.com</div>
+                <hr className="col-span-3 my-2" />
+                <div className="col-span-1 font-semibold">Phone</div>
+                <div className="col-span-2 text-gray-600">(097) 234-5678</div>
+                <hr className="col-span-3 my-2" />
+                <div className="col-span-1 font-semibold">Mobile</div>
+                <div className="col-span-2 text-gray-600">(098) 765-4321</div>
+                <hr className="col-span-3 my-2" />
+                <div className="col-span-1 font-semibold">Address</div>
+                <div className="col-span-2 text-gray-600">Bay Area, San Francisco, CA</div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-white rounded shadow p-6">
+                <h5 className="font-semibold text-primary mb-4"><span className="font-italic">assignment</span> Project Status</h5>
+                <div className="mb-4">
+                  <p className="text-gray-600 text-sm mb-1">Web Design</p>
+                  <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4">
+                    <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: '80%' }}></div>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-1">Website Markup</p>
+                  <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4">
+                    <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: '72%' }}></div>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-1">One Page</p>
+                  <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4">
+                    <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: '89%' }}></div>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-1">Mobile Template</p>
+                  <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4">
+                    <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: '55%' }}></div>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-1">Backend API</p>
+                  <div className="w-full bg-gray-200 rounded-full h-2.5">
+                    <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: '66%' }}></div>
+                  </div>
                 </div>
-              </MDBCardBody>
-            </MDBCard>
+              </div>
 
-            <MDBCard className="mb-4 mb-lg-0">
-              <MDBCardBody className="p-0">
-                <MDBListGroup flush className="rounded-3">
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fas icon="globe fa-lg text-warning" />
-                    <MDBCardText>https://mdbootstrap.com</MDBCardText>
-                  </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fab icon="github fa-lg" style={{ color: '#333333' }} />
-                    <MDBCardText>mdbootstrap</MDBCardText>
-                  </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fab icon="twitter fa-lg" style={{ color: '#55acee' }} />
-                    <MDBCardText>@mdbootstrap</MDBCardText>
-                  </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fab icon="instagram fa-lg" style={{ color: '#ac2bac' }} />
-                    <MDBCardText>mdbootstrap</MDBCardText>
-                  </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fab icon="facebook fa-lg" style={{ color: '#3b5998' }} />
-                    <MDBCardText>mdbootstrap</MDBCardText>
-                  </MDBListGroupItem>
-                </MDBListGroup>
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-          <MDBCol lg="8">
-            <MDBCard className="mb-4">
-              <MDBCardBody>
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Full Name</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">Johnatan Smith</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Email</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">example@example.com</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Phone</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">(097) 234-5678</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Mobile</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">(098) 765-4321</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Address</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">Bay Area, San Francisco, CA</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-              </MDBCardBody>
-            </MDBCard>
-
-            <MDBRow>
-              <MDBCol md="6">
-                <MDBCard className="mb-4 mb-md-0">
-                  <MDBCardBody>
-                    <MDBCardText className="mb-4"><span className="text-primary font-italic me-1">assigment</span> Project Status</MDBCardText>
-                    <MDBCardText className="mb-1" style={{ fontSize: '.77rem' }}>Web Design</MDBCardText>
-                    <MDBProgress className="rounded">
-                      <MDBProgressBar width={80} valuemin={0} valuemax={100} />
-                    </MDBProgress>
-
-                    <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>Website Markup</MDBCardText>
-                    <MDBProgress className="rounded">
-                      <MDBProgressBar width={72} valuemin={0} valuemax={100} />
-                    </MDBProgress>
-
-                    <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>One Page</MDBCardText>
-                    <MDBProgress className="rounded">
-                      <MDBProgressBar width={89} valuemin={0} valuemax={100} />
-                    </MDBProgress>
-
-                    <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>Mobile Template</MDBCardText>
-                    <MDBProgress className="rounded">
-                      <MDBProgressBar width={55} valuemin={0} valuemax={100} />
-                    </MDBProgress>
-
-                    <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>Backend API</MDBCardText>
-                    <MDBProgress className="rounded">
-                      <MDBProgressBar width={66} valuemin={0} valuemax={100} />
-                    </MDBProgress>
-                  </MDBCardBody>
-                </MDBCard>
-              </MDBCol>
-
-              <MDBCol md="6">
-                <MDBCard className="mb-4 mb-md-0">
-                  <MDBCardBody>
-                    <MDBCardText className="mb-4"><span className="text-primary font-italic me-1">assigment</span> Project Status</MDBCardText>
-                    <MDBCardText className="mb-1" style={{ fontSize: '.77rem' }}>Web Design</MDBCardText>
-                    <MDBProgress className="rounded">
-                      <MDBProgressBar width={80} valuemin={0} valuemax={100} />
-                    </MDBProgress>
-
-                    <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>Website Markup</MDBCardText>
-                    <MDBProgress className="rounded">
-                      <MDBProgressBar width={72} valuemin={0} valuemax={100} />
-                    </MDBProgress>
-
-                    <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>One Page</MDBCardText>
-                    <MDBProgress className="rounded">
-                      <MDBProgressBar width={89} valuemin={0} valuemax={100} />
-                    </MDBProgress>
-
-                    <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>Mobile Template</MDBCardText>
-                    <MDBProgress className="rounded">
-                      <MDBProgressBar width={55} valuemin={0} valuemax={100} />
-                    </MDBProgress>
-
-                    <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>Backend API</MDBCardText>
-                    <MDBProgress className="rounded">
-                      <MDBProgressBar width={66} valuemin={0} valuemax={100} />
-                    </MDBProgress>
-                  </MDBCardBody>
-                </MDBCard>
-              </MDBCol>
-            </MDBRow>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
+              <div className="bg-white rounded shadow p-6">
+                <h5 className="font-semibold text-primary mb-4"><span className="font-italic">assignment</span> Project Status</h5>
+                <div className="mb-4">
+                  <p className="text-gray-600 text-sm mb-1">Web Design</p>
+                  <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4">
+                    <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: '80%' }}></div>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-1">Website Markup</p>
+                  <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4">
+                    <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: '72%' }}></div>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-1">One Page</p>
+                  <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4">
+                    <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: '89%' }}></div>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-1">Mobile Template</p>
+                  <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4">
+                    <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: '55%' }}></div>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-1">Backend API</p>
+                  <div className="w-full bg-gray-200 rounded-full h-2.5">
+                    <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: '66%' }}></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
