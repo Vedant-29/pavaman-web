@@ -16,9 +16,7 @@ function TaskCard({ tasks, taskStatus, datevalue }) {
   return (
     <div id="scrollbar" className="space-y-4 overflow-auto max-h-72 px-1">
       {filteredTasks.length > 0 ? (
-        filteredTasks.map((task) => {
-
-        return (
+        filteredTasks.map((task) => (
 
           <div className="mt-1 mb-1 shadow-custom-light rounded-lg">
             <Card className="border-0 rounded-xl">
@@ -81,7 +79,7 @@ function TaskCard({ tasks, taskStatus, datevalue }) {
               </div>
             </Card>
           </div>
-        )})
+        ))
       ) : (
         <p className="text-gray-600">No tasks found</p>
       )}
