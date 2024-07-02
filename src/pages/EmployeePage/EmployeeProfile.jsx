@@ -7,46 +7,23 @@ import { TbTargetOff } from "react-icons/tb";
 import { DateCalendar, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
-import { RxHamburgerMenu } from "react-icons/rx";
 import { useNavigate, useParams } from "react-router-dom";
 import { IoIosArrowRoundBack } from "react-icons/io";
-import { FaMapMarkerAlt } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
-import { IoLocationOutline } from "react-icons/io5";
-import { FaPhoneAlt } from "react-icons/fa";
 import { FiPlus } from "react-icons/fi";
 
 import { IoPerson } from "react-icons/io5";
 import spinner from "../../assets/spinner.svg";
 import { supabase } from "../../config/supabase-client";
-import { Card } from "react-bootstrap";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import TaskCard from "./components/TaskCard";
 
 function EmployeeProfile() {
   const [datevalue, setDatevalue] = useState(dayjs());
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isPhone, setIsPhone] = useState(false);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
 
   const [taskStatus, setTaskStatus] = useState("toComplete");
   const [tasks, setTasks] = useState([]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsPhone(window.innerWidth < 1024);
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   useEffect(() => {
     const employeeTasks = async () => {
@@ -66,12 +43,6 @@ function EmployeeProfile() {
 
     employeeTasks();
   }, [id]);
-
-  const filteredTasks = tasks.filter(
-    (task) =>
-      task.status === taskStatus &&
-      dayjs(task.completion_date).isSame(dayjs(datevalue), "day")
-  );
 
   return (
     <div className="relative">
