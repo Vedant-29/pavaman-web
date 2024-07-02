@@ -15,6 +15,8 @@ import {
 } from "@heroicons/react/24/solid";
 import { useNavigate } from 'react-router-dom';
 import {useAuth} from "../hooks/auth";
+import { RxCross2 } from "react-icons/rx";
+
 
 function DefaultSidebar( {collapsable = false}) {
   const [activeItem, setActiveItem] = useState('Employee list');
@@ -26,9 +28,9 @@ function DefaultSidebar( {collapsable = false}) {
 
   const menuItems = [
     { name: 'Employee list', icon: PresentationChartBarIcon, onclick: () => navigate("/employee-list") },
-    { name: 'Inbox', icon: ShoppingBagIcon, onclick: () => navigate("/inbox") },
-    { name: 'Profile', icon: UserCircleIcon, onclick: () => navigate("/profile") },
-    { name: 'Settings', icon: Cog6ToothIcon, onclick: () => navigate("/settings") },
+    { name: 'Inbox', icon: ShoppingBagIcon, onclick: () => navigate("/employee-list") },
+    { name: 'Profile', icon: UserCircleIcon, onclick: () => navigate("/employee-list") },
+    { name: 'Settings', icon: Cog6ToothIcon, onclick: () => navigate("/employee-list") },
     { name: 'Log Out', icon: PowerIcon, onclick: () => setShowLogOutPopup(true) }, // Toggle popup for logout
   ];
 
