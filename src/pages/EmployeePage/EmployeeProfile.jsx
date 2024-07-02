@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import DefaultSidebar from "../../components/DefaultSidebar";
 import dayjs from "dayjs";
 import { FaLocationArrow } from "react-icons/fa6";
-import { IoPerson } from "react-icons/io5";
 import { LuTarget } from "react-icons/lu";
 import { TbTargetOff } from "react-icons/tb";
 import { DateCalendar, LocalizationProvider } from "@mui/x-date-pickers";
@@ -11,17 +10,26 @@ import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useNavigate, useParams } from "react-router-dom";
 import { IoIosArrowRoundBack } from "react-icons/io";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { IoLocationOutline } from "react-icons/io5";
+import { FaPhoneAlt } from "react-icons/fa";
 import { FiPlus } from "react-icons/fi";
 
+import { IoPerson } from "react-icons/io5";
 import spinner from "../../assets/spinner.svg";
 import { supabase } from "../../config/supabase-client";
+import { Card } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import TaskCard from "./components/TaskCard";
 
 function EmployeeProfile() {
-  const [datevalue, setDatevalue] = useState(dayjs("2022-04-17"));
+  const [datevalue, setDatevalue] = useState(dayjs());
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isPhone, setIsPhone] = useState(false);
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
 
   const [taskStatus, setTaskStatus] = useState("toComplete");
@@ -38,30 +46,38 @@ function EmployeeProfile() {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-
-    employeeTasks();
   }, []);
 
-  const employeeTasks = async () => {
-    const { data, error } = await supabase
-      .from("employee_tasks")
-      .select("*")
-      .eq("assigned_to_id", id);
+  useEffect(() => {
+    const employeeTasks = async () => {
+      const { data, error } = await supabase
+        .from("employee_tasks")
+        .select("*")
+        .eq("assigned_to_id", id);
 
-    if (error) {
-      console.log(error);
-    } else {
-      setTasks(data);
-    }
-  };
+      if (error) {
+        console.log(error);
+      } else {
+        setTasks(data);
+        setIsLoading(false);
+        console.log(data);
+      }
+    };
 
-  const filteredTasks = tasks.filter((task) => task.status === taskStatus);
+    employeeTasks();
+  }, [id]);
+
+  const filteredTasks = tasks.filter(
+    (task) =>
+      task.status === taskStatus &&
+      dayjs(task.completion_date).isSame(dayjs(datevalue), "day")
+  );
 
   return (
     <div className="relative">
       {isLoading && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-white ">
-          <img src={spinner} />
+          <img src={spinner} alt="Loading..." />
         </div>
       )}
 
@@ -193,48 +209,20 @@ function EmployeeProfile() {
                     </div>
                   </div>
                   <div className="text-gray-600 mb-4">
-                    <span className="font-semibold">Due. Today, Monday 17</span>
+                    <span className="font-semibold">
+                      Due {datevalue.format("MMMM D, YYYY")}
+                    </span>{" "}
                   </div>
-                  <div
-                    id="scrollbar"
-                    className="space-y-4 overflow-auto max-h-72"
-                  >
-                    {filteredTasks.length > 0 ? (
-                      filteredTasks.map((task) => {
-                        <div className="bg-blue-100 p-4 rounded-md border border-blue-200">
-                          <div className="flex items-center mb-2">
-                            <div className="text-blue-500 mr-2">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                className="w-6 h-6"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth="2"
-                                  d="M9.75 6.75a.75.75 0 100-1.5.75.75 0 000 1.5zM3 12a9 9 0 1118 0A9 9 0 013 12z"
-                                />
-                              </svg>
-                            </div>
-                            <span className="text-gray-600">
-                              {task.completion_date}
-                            </span>
-                          </div>
-                          <h3 className="text-lg font-semibold text-gray-800">
-                            {task.location_name}
-                          </h3>
-                          <p className="text-gray-600">
-                            {task.location_map_link}
-                          </p>
-                        </div>;
-                      })
-                    ) : (
-                      <p className="text-gray-600">No tasks found</p>
-                    )}
-                  </div>
+                  {tasks ? (
+                    <TaskCard
+                      tasks={tasks}
+                      taskStatus={taskStatus}
+                      datevalue={datevalue}
+                    />
+                  ) : (
+                    // Optional: Render a placeholder or loading indicator here
+                    <div>Loading...</div>
+                  )}{" "}
                 </div>
                 <div className="bg-white rounded shadow-custom-light p-6 mb-4">
                   <div className="flex justify-between items-center mb-4">
