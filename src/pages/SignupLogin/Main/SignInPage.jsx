@@ -22,9 +22,9 @@ function SignInPage() {
       setRMsg(error.message);
     } else {
       const { data: userData, error: userError } = await supabase
-        .from("user_profiles")
-        .select("user_role")
-        .eq("user_email", email)
+        .from("admin_users")
+        .select("admin_subrole")
+        .eq("email", email)
         .single();
 
       console.log("User data:", userData.user_role);
@@ -32,12 +32,12 @@ function SignInPage() {
         console.error("Error fetching user data:", userError.message);
         navigate("/");
       } else {
-        if (userData && userData.user_role === "admin") {
+        if (userData && userData.user_role === "pending") {
           // Redirect the user to the admin page
-          navigate("/admin");
+          navigate("/employee-list");
         } else {
           // Redirect the user to the homepage
-          navigate("/employee-list");
+          navigate("/admin");
         }
       }
     }

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import DefaultSidebar from "../../components/DefaultSidebar";
 import { supabase } from "../../config/supabase-client";
+import { useNavigate } from "react-router-dom";
+import spinner from "../../assets/spinner.svg";
+
 
 const StatsCard = ({ title, value, color }) => {
   return (
@@ -17,22 +20,32 @@ const StatsCard = ({ title, value, color }) => {
 
 function EmployeePage() {
   const [employeeList, setemployeeList] = useState([]);
+  const navigate =  useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
+    const fetchEmployeeList = async () => {
+      const { data, error } = await supabase.from("employee_users").select("*");
+  
+      if (error) {
+        console.log(error.message);
+      } else {
+        setemployeeList(data);
+        setIsLoading(false);
+      }
+    };
     fetchEmployeeList();
   });
 
-  const fetchEmployeeList = async () => {
-    const { data, error } = await supabase.from("employee_list").select("*");
 
-    if (error) {
-      console.log(error.message);
-    } else {
-      setemployeeList(data);
-    }
-  };
 
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row ">
+      {isLoading && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-white ">
+          <img src={spinner} />
+        </div>
+      )}
       <DefaultSidebar />
       <div
         className="flex-1 p-6"
@@ -43,10 +56,10 @@ function EmployeePage() {
           <StatsCard
             title="Total Salesman"
             value="$76,96,432"
-            color="#FADEDE"
+            color="#EBE8FD"
           />
           <StatsCard title="Targets Completed" value="1645" color="#EBE8FD" />
-          <StatsCard title="Targets Pending" value="14,634" color="#FADEDE" />
+          <StatsCard title="Targets Pending" value="14,634" color="#EBE8FD" />
           {/* <StatsCard
             title="Total Products"
             value="254"
@@ -92,21 +105,21 @@ function EmployeePage() {
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {employeeList.map((employee) => (
-                <tr key={employee.id}>
+                <tr key={employee.employee_id}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    {employee.id}
+                    {employee.employee_id}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {employee.name}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {employee.mobileno}
+                    {employee.phoneNo}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {employee.email}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
-                    <button className="py-1 px-4 bg-[#D7FFDE] text-[#00B69B] font-medium rounded-md flex-shrink-0">
+                    <button onClick={() => navigate(`/employee-profile/${employee.employee_id}`)} className="py-1 px-4 bg-[#D7FFDE] text-[#00B69B] font-medium rounded-md flex-shrink-0">
                       View details
                     </button>
                   </td>
