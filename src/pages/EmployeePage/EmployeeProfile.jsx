@@ -14,19 +14,18 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 import { FiPlus } from "react-icons/fi";
 
 import spinner from "../../assets/spinner.svg";
+import { supabase } from "../../config/supabase-client";
 
 function EmployeeProfile() {
-  const [value, setValue] = useState(dayjs("2022-04-17"));
-  const [taskStatus, setTaskStatus] = useState("toComplete");
+  const [datevalue, setDatevalue] = useState(dayjs("2022-04-17"));
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isPhone, setIsPhone] = useState(false);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+  const [taskStatus, setTaskStatus] = useState("toComplete");
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -39,7 +38,24 @@ function EmployeeProfile() {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
+
+    employeeTasks();
   }, []);
+
+  const employeeTasks = async () => {
+    const { data, error } = await supabase
+      .from("employee_tasks")
+      .select("*")
+      .eq("assigned_to_id", id);
+
+    if (error) {
+      console.log(error);
+    } else {
+      setTasks(data);
+    }
+  };
+
+  const filteredTasks = tasks.filter((task) => task.status === taskStatus);
 
   return (
     <div className="relative">
@@ -57,7 +73,7 @@ function EmployeeProfile() {
         </div>
       ) : (
         <div className="hidden lg:flex flex-row">
-          <DefaultSidebar collapsable={true}/>
+          <DefaultSidebar collapsable={true} />
           <div
             className="flex w-full py-4"
             style={{ maxHeight: "calc(100vh - 56px)", overflowY: "auto" }}
@@ -137,8 +153,7 @@ function EmployeeProfile() {
                 <div className="bg-white rounded shadow-custom-light p-6 mb-4">
                   <div className="flex justify-between items-center mb-4">
                     <h2 className="text-xl font-semibold">Tasks</h2>
-                    <div
-                      className="bg-blue-500 text-white px-2 py-1 w-fit text-start rounded-md flex items-center"                    >
+                    <div className="bg-blue-500 text-white px-2 py-1 w-fit text-start rounded-md flex items-center">
                       <FiPlus size={20} className="mr-2" />
                       <button>Add Task</button>
                     </div>
@@ -184,96 +199,41 @@ function EmployeeProfile() {
                     id="scrollbar"
                     className="space-y-4 overflow-auto max-h-72"
                   >
-                    <div className="bg-blue-100 p-4 rounded-md border border-blue-200">
-                      <div className="flex items-center mb-2">
-                        <div className="text-blue-500 mr-2">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            className="w-6 h-6"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              d="M9.75 6.75a.75.75 0 100-1.5.75.75 0 000 1.5zM3 12a9 9 0 1118 0A9 9 0 013 12z"
-                            />
-                          </svg>
-                        </div>
-                        <span className="text-gray-600">
-                          10:30 AM - 11:30 AM
-                        </span>
-                      </div>
-                      <h3 className="text-lg font-semibold text-gray-800">
-                        Programming
-                      </h3>
-                      <p className="text-gray-600">
-                        Create a unique emotional story that describes better
-                        than words
-                      </p>
-                    </div>
-                    <div className="bg-blue-100 p-4 rounded-md border border-blue-200">
-                      <div className="flex items-center mb-2">
-                        <div className="text-blue-500 mr-2">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            className="w-6 h-6"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              d="M9.75 6.75a.75.75 0 100-1.5.75.75 0 000 1.5zM3 12a9 9 0 1118 0A9 9 0 013 12z"
-                            />
-                          </svg>
-                        </div>
-                        <span className="text-gray-600">
-                          10:30 AM - 11:30 AM
-                        </span>
-                      </div>
-                      <h3 className="text-lg font-semibold text-gray-800">
-                        Programming
-                      </h3>
-                      <p className="text-gray-600">
-                        Create a unique emotional story that describes better
-                        than words
-                      </p>
-                    </div>
-                    <div className="bg-blue-100 p-4 rounded-md border border-blue-200">
-                      <div className="flex items-center mb-2">
-                        <div className="text-blue-500 mr-2">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            className="w-6 h-6"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              d="M9.75 6.75a.75.75 0 100-1.5.75.75 0 000 1.5zM3 12a9 9 0 1118 0A9 9 0 013 12z"
-                            />
-                          </svg>
-                        </div>
-                        <span className="text-gray-600">
-                          10:30 AM - 11:30 AM
-                        </span>
-                      </div>
-                      <h3 className="text-lg font-semibold text-gray-800">
-                        Programming
-                      </h3>
-                      <p className="text-gray-600">
-                        Create a unique emotional story that describes better
-                        than words
-                      </p>
-                    </div>
+                    {filteredTasks.length > 0 ? (
+                      filteredTasks.map((task) => {
+                        <div className="bg-blue-100 p-4 rounded-md border border-blue-200">
+                          <div className="flex items-center mb-2">
+                            <div className="text-blue-500 mr-2">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                className="w-6 h-6"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
+                                  d="M9.75 6.75a.75.75 0 100-1.5.75.75 0 000 1.5zM3 12a9 9 0 1118 0A9 9 0 013 12z"
+                                />
+                              </svg>
+                            </div>
+                            <span className="text-gray-600">
+                              {task.completion_date}
+                            </span>
+                          </div>
+                          <h3 className="text-lg font-semibold text-gray-800">
+                            {task.location_name}
+                          </h3>
+                          <p className="text-gray-600">
+                            {task.location_map_link}
+                          </p>
+                        </div>;
+                      })
+                    ) : (
+                      <p className="text-gray-600">No tasks found</p>
+                    )}
                   </div>
                 </div>
                 <div className="bg-white rounded shadow-custom-light p-6 mb-4">
@@ -288,8 +248,8 @@ function EmployeeProfile() {
                         <DemoItem>
                           <DateCalendar
                             disableFuture
-                            value={value}
-                            onChange={(newValue) => setValue(newValue)}
+                            value={datevalue}
+                            onChange={(newValue) => setDatevalue(newValue)}
                           />
                         </DemoItem>
                       </DemoContainer>
