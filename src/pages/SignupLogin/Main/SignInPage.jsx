@@ -27,12 +27,11 @@ function SignInPage() {
         .eq("email", email)
         .single();
 
-      console.log("User data:", userData.user_role);
       if (userError) {
         console.error("Error fetching user data:", userError.message);
         navigate("/");
       } else {
-        if (userData && userData.user_role === "pending") {
+        if (userData && userData.admin_subrole === "pending") {
           // Redirect the user to the admin page
           navigate("/employee-list");
         } else {
