@@ -46,7 +46,7 @@ function DefaultSidebar( {collapsable = false}) {
             <div className="text-lg flex items-center justify-between font-medium mb-3 px-6 py-4 shadow-custom-light relative">
               <div>Log out</div>
               <div className="w-8 h-8 flex items-center justify-center bg-transparent text-white " onClick={() => setShowSignUpPopup(false)}>
-                <RxCross2 className="text-[#E75A5A]" />
+                <RxCross2 className="text-[#2871F9]" />
               </div>
             </div>
             <div className="flex flex-col items-center justify-center mb-4 px-6">
@@ -56,13 +56,13 @@ function DefaultSidebar( {collapsable = false}) {
             </div>
             <div className="flex justify-end px-6 pb-6 mt-4">
               <div
-                className="focus:outline-none w-full flex items-center justify-center bg-white px-6 px-6 lg:px-11 py-2.5 text-[#E75A5A] rounded-md cursor-pointer font-medium sm:text-xs lg:text-base"
+                className="focus:outline-none w-full flex items-center justify-center bg-white px-6 px-6 lg:px-11 py-2.5 text-[#2871F9] rounded-md cursor-pointer font-medium sm:text-xs lg:text-base"
                 onClick={() => setShowLogOutPopup(false)}
               >
                 Cancel
               </div>
               <div
-                className="focus:outline-none ml-2 w-full flex items-center justify-center bg-[#E75A5A] px-6 px-6 lg:px-11 py-2.5 text-white rounded-md cursor-pointer font-medium sm:text-xs lg:text-base"
+                className="focus:outline-none ml-2 w-full flex items-center justify-center bg-[#2871F9] px-6 px-6 lg:px-11 py-2.5 text-white rounded-md cursor-pointer font-medium sm:text-xs lg:text-base"
                 onClick={handleSignOut}
               >
                 Sign out
