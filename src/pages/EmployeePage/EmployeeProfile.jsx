@@ -80,14 +80,6 @@ function EmployeeProfile() {
           <img src={spinner} alt="Loading..." />
         </div>
       )}
-
-      {isPhone ? (
-        <div className="flex items-center justify-center h-screen">
-          <p className="text-gray-800 text-xl">
-            Admin portal only visible on laptops not on mobile versions
-          </p>
-        </div>
-      ) : (
         <div className="hidden lg:flex flex-row">
           <DefaultSidebar collapsable={true} />
           <div
@@ -248,7 +240,20 @@ function EmployeeProfile() {
             </div>
           </div>
         </div>
-      )}
+        <div className="flex items-center justify-center h-screen lg:hidden">
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <div className="bg-white rounded-lg shadow-lg w-96">
+            <div className="text-lg flex items-center justify-center text-center font-medium mb-3 px-6 py-4 shadow-custom-light relative">
+              <div>Admin Portal Unavailable on Mobile Devices</div>
+            </div>
+            <div className="flex flex-col items-center justify-center mb-4 px-6">
+              <div className="text-center">
+                Please switch to a laptop or desktop to access the admin portal.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
