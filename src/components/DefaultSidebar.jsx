@@ -14,16 +14,18 @@ import {
   InboxIcon,
   PowerIcon,
 } from "@heroicons/react/24/solid";
+import { useNavigate } from 'react-router-dom';
 
 function DefaultSidebar() {
   const [activeItem, setActiveItem] = useState('Employee list');
+  const navigate = useNavigate();
 
   const menuItems = [
-    { name: 'Employee list', icon: PresentationChartBarIcon },
-    { name: 'Inbox', icon: ShoppingBagIcon },
-    { name: 'Profile', icon: UserCircleIcon },
-    { name: 'Settings', icon: Cog6ToothIcon },
-    { name: 'Log Out', icon: PowerIcon },
+    { name: 'Employee list', icon: PresentationChartBarIcon, onclick: "/employee-list" },
+    { name: 'Inbox', icon: ShoppingBagIcon, onclick: "/employee-list" },
+    { name: 'Profile', icon: UserCircleIcon, onclick: "/employee-list" },
+    { name: 'Settings', icon: Cog6ToothIcon, onclick: "/employee-list" },
+    { name: 'Log Out', icon: PowerIcon, onclick: "/employee-list" },
   ];
 
   return (
@@ -37,7 +39,10 @@ function DefaultSidebar() {
                 ? 'bg-blue-500 text-white'
                 : 'hover:bg-blue-100'
             }`}
-            onClick={() => setActiveItem(item.name)}
+            onClick={() => {
+              navigate(item.onclick);
+              setActiveItem(item.name)
+            }}
           >
             <ListItemPrefix>
               <item.icon className="h-5 w-5 mr-2" />

@@ -30,7 +30,7 @@ function App() {
               <EmployeePage />
             </RootLayout>
           } />
-          <Route exact path="/employee-profile" element={
+          <Route exact path="/employee-profile/:id" element={
             <RootLayout isNavbarFixed={false}>
               <EmployeeProfile />
             </RootLayout>

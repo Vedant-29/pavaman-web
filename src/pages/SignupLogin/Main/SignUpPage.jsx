@@ -28,11 +28,11 @@ function SignUpPage() {
       const emailId = signUpData.user.email;
 
       const { data: insertData, error: insertError } = await supabase
-        .from("user_profiles")
+        .from("admin_users")
         .insert([
           {
-            id: userId,
-            user_email: emailId,
+            admin_id: userId,
+            email: emailId,
           },
         ]);
 
