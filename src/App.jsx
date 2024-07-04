@@ -14,6 +14,7 @@ import EmployeePage from './pages/EmployeePage/EmployeePage'
 import EmployeeProfile from './pages/EmployeePage/EmployeeProfile'
 import Test from './pages/EmployeePage/Test'
 import "./App.css"
+import Intro from './pages/TestGoogleMaps/Intro'
 
 function App() {
   return (
@@ -100,6 +101,15 @@ function App() {
             element={
               <RootLayout isNavbarFixed={false}>
                 <ProfilePage />
+              </RootLayout>
+            }
+          />
+          <Route
+            exact
+            path="/maps-test"
+            element={
+              <RootLayout isNavbarFixed={false}>
+                <Intro />
               </RootLayout>
             }
           />
