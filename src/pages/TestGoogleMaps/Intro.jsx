@@ -20,8 +20,8 @@ function Intro() {
     <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
       <div style={{ height: "100vh", width: "100%" }}>
         <Map
-          zoom={12}
-          center={position}
+          defaultZoom={12}
+          defaultCenter={position}
           mapId={import.meta.env.VITE_PUBLIC_MAP_ID}
         >
           <AdvancedMarker position={position} onClick={() => setOpen(true)}>
