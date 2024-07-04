@@ -8,7 +8,7 @@ function Intro() {
   };
 
   return (
-    <APIProvider apiKey={import.meta.env.GOOGLE_MAPS_API_KEY}>
+    <APIProvider apiKey="REDACTED_GMAPS_KEY">
       <div style={{height: "100vh"}}>
         <Map zoom={10} center={position}></Map>
       </div>
