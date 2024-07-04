@@ -3,7 +3,7 @@ import Navbar from "./Navbar"
 
 function RootLayout({ children, isNavbarFixed }) {
   const location = useLocation();
-  const authRoutes = ["/signin", "/signup","/email-verify" ,"/verification-complete", "/password-recover", "/password-reset"];
+  const authRoutes = ["/signin", "/signup","/email-verify" ,"/verification-complete", "/password-recover", "/password-reset", "/maps-test"];
 
   return (
     <>
