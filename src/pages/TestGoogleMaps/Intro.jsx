@@ -7,13 +7,14 @@ import {
   Pin,
 } from "@vis.gl/react-google-maps";
 import React, { useState } from "react";
+import trees from "../TestGoogleMaps/data/trees"
 
 function Intro() {
   const [open, setOpen] = useState(false);
 
   const position = {
-    lat: 53.34,
-    lng: 10,
+    lat: 17.366,
+    lng: 78.476,
   };
 
   return (
