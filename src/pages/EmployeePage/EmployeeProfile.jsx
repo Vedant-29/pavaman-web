@@ -11,6 +11,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { FiPlus } from "react-icons/fi";
 
+
 import { IoPerson } from "react-icons/io5";
 import spinner from "../../assets/spinner.svg";
 import { supabase } from "../../config/supabase-client";

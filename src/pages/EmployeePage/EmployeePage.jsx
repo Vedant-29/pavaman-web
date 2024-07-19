@@ -60,11 +60,6 @@ function EmployeePage() {
             />
             <StatsCard title="Targets Completed" value="1645" color="#EBE8FD" />
             <StatsCard title="Targets Pending" value="14,634" color="#EBE8FD" />
-            {/* <StatsCard
-            title="Total Products"
-            value="254"
-            color="#EBE8FD"
-          /> */}
           </div>
 
           <div className="flex justify-between items-center mb-4">
