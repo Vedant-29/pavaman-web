@@ -20,7 +20,6 @@ import { RxCross2 } from "react-icons/rx";
 
 function DefaultSidebar( {collapsable = false}) {
   const [activeItem, setActiveItem] = useState('Employee list');
-  const [isCollapsed, setIsCollapsed] = useState(false);
   const navigate = useNavigate();
   const [showLogOutPopup, setShowLogOutPopup] = useState(false);
   const { signOut } = useAuth();
