@@ -184,9 +184,8 @@ function EmployeeProfile() {
                       datevalue={datevalue}
                     />
                   ) : (
-                    // Optional: Render a placeholder or loading indicator here
                     <div>Loading...</div>
-                  )}{" "}
+                  )}
                 </div>
                 <div className="bg-white rounded shadow-custom-light p-6 mb-4">
                   <div className="flex justify-between items-center mb-4">
